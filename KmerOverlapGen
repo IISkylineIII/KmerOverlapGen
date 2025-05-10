@@ -1,0 +1,25 @@
+def kmer_composition(s, k, d):
+    kmers = []
+    for i in range(len(s) - k + 1):
+        kmer = s[i:i+k]
+        kmers.append(kmer)
+    return sorted(set(kmers))
+
+def format_kmer_composition(composition, k, d):
+    formatted_composition = []
+    for i in range(len(composition) - 1):
+        formatted_composition.append(f'({composition[i][:k-d]}|{composition[i+1][:k-d]})')
+    return ' '.join(formatted_composition)
+
+# Input string
+sequence = "TAATGCCATGGGATGTT"
+
+# Set parameters
+k = 3  # k-mer length
+d = 2  # Overlap length
+
+composition = kmer_composition(sequence, k, d)
+
+# Format and print the result
+result = format_kmer_composition(composition, k, d)
+print(result)
